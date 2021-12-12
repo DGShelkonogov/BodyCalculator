@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.tabbedFragments.Fragment_life_index">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/beau_regular"
+            android:text="@string/life_index"
+            android:textSize="30dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="17sp"
+            android:fontFamily="@font/beau_regular"
+            android:text="@string/title_1_life_index"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ПШ"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/beau_regular"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edtNumMass"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edtNumMass" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(с)"
+            app:layout_constraintBottom_toBottomOf="@+id/edtNumMass"
+            app:layout_constraintStart_toEndOf="@+id/edtNumMass"
+            app:layout_constraintTop_toTopOf="@+id/edtNumMass" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/JEL"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/beau_regular"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/edtNumJEL"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/edtNumJEL" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="(мл)"
+            app:layout_constraintBottom_toBottomOf="@+id/edtNumJEL"
+            app:layout_constraintStart_toEndOf="@+id/edtNumJEL"
+            app:layout_constraintTop_toTopOf="@+id/edtNumJEL" />
+
+
+        <EditText
+            android:id="@+id/edtNumJEL"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="3500"
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/textView18"
+            app:layout_constraintTop_toBottomOf="@+id/edtNumMass" />
+
+        <EditText
+            android:id="@+id/edtNumMass"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+
+            android:inputType="number"
+            app:layout_constraintStart_toEndOf="@+id/textView16"
+            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+        <Button
+            android:id="@+id/btn_life_index_define"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/define"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtNumJEL" />
+
+        <TextView
+            android:id="@+id/txt_life_index_res"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:fontFamily="@font/beau_regular"
+            android:text="Резульатат: "
+            android:textSize="25sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_life_index_define" />
+
+        <TextView
+            android:id="@+id/txt_life_index_rec"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:textSize="16sp"
+            android:text="@string/life_index_rec"
+            app:layout_constraintStart_toStartOf="@+id/txt_life_index_res"
+            app:layout_constraintTop_toBottomOf="@+id/txt_life_index_res" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
