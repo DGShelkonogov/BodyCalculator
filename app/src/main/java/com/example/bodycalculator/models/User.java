@@ -1,7 +1,7 @@
 package com.example.bodycalculator.models;
 
 public class User {
-    public enum KEYS{
+ /*   public enum KEYS{
         AGE,
         IS_MAN,
         HEIGH,
@@ -12,6 +12,10 @@ public class User {
         DAD,
         PS,
         JEL
+    }*/
+
+    public enum KEYS{
+        USER
     }
 
     private double age;

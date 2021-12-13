@@ -2,6 +2,7 @@ package com.example.bodycalculator.ui.main;
 
 import android.content.Context;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -11,6 +12,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.bodycalculator.R;
+import com.example.bodycalculator.TabbedActivity;
+import com.example.bodycalculator.models.User;
 import com.example.bodycalculator.ui.result.ResultFragment;
 import com.example.bodycalculator.ui.tabbedFragments.Fragment_body_mass_index;
 import com.example.bodycalculator.ui.tabbedFragments.Fragment_endurance_coefficient;
@@ -53,8 +56,24 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+       TabbedActivity activity = (TabbedActivity) fragments[position].getActivity();
+
+       try{
+           User user = activity.user;
+           if(user.getBodyMass() != 0.0){
+               EditText edt = fragments[position].getView().findViewById(R.id.edtNumBodyMass);
+               edt.setText(String.valueOf(user.getBodyMass()));
+           }
+
+       }catch (NullPointerException ex){
+
+       }
+
+
 
     }
+
+
 
 
     @Override

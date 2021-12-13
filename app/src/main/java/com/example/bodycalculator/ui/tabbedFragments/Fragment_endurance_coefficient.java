@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.bodycalculator.R;
+import com.example.bodycalculator.TabbedActivity;
 
 public class Fragment_endurance_coefficient extends Fragment {
 
@@ -25,16 +26,30 @@ public class Fragment_endurance_coefficient extends Fragment {
         EditText edtNumCSS = v.findViewById(R.id.edtNumCSS);
         EditText edtNumSAD = v.findViewById(R.id.edtNumSAD);
         EditText edtNumDAD = v.findViewById(R.id.edtNumDAD);
+
+        TabbedActivity activity = (TabbedActivity) getActivity();
+
         Button btn_endurance_coefficient_define = v.findViewById(R.id.btn_endurance_coefficient_define);
         btn_endurance_coefficient_define.setOnClickListener(v1 -> {
             double CSS = Double.parseDouble(edtNumCSS.getText().toString());
             double SAD = Double.parseDouble(edtNumSAD.getText().toString());
             double DAD = Double.parseDouble(edtNumDAD.getText().toString());
+            activity.user.setCSS(CSS);
+            activity.user.setSAD(SAD);
+            activity.user.setDAD(DAD);
+
+
+
+
 
             if(SAD - DAD <= 0){
                 txt_endurance_coefficient_res.setText("САД - ДАД не может быть <= 0");
             }else{
                 double kv = (CSS * 10) / (SAD - DAD);
+
+                activity.user.setCSS(CSS);
+                activity.user.setSAD(SAD);
+                activity.user.setDAD(DAD);
 
                 String result = String.format("%.2f",kv);
 
