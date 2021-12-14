@@ -41,22 +41,22 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ПШ"
+            android:text="Масса тела"
             android:layout_marginStart="30dp"
             android:fontFamily="@font/beau_regular"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/edtNumMass"
+            app:layout_constraintBottom_toBottomOf="@+id/edtNumBodyMass"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/edtNumMass" />
+            app:layout_constraintTop_toTopOf="@+id/edtNumBodyMass" />
 
         <TextView
             android:id="@+id/textView17"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(с)"
-            app:layout_constraintBottom_toBottomOf="@+id/edtNumMass"
-            app:layout_constraintStart_toEndOf="@+id/edtNumMass"
-            app:layout_constraintTop_toTopOf="@+id/edtNumMass" />
+            android:text="(кг)"
+            app:layout_constraintBottom_toBottomOf="@+id/edtNumBodyMass"
+            app:layout_constraintStart_toEndOf="@+id/edtNumBodyMass"
+            app:layout_constraintTop_toTopOf="@+id/edtNumBodyMass" />
 
         <TextView
             android:id="@+id/textView18"
@@ -89,10 +89,10 @@
             android:hint="3500"
             android:inputType="number"
             app:layout_constraintStart_toEndOf="@+id/textView18"
-            app:layout_constraintTop_toBottomOf="@+id/edtNumMass" />
+            app:layout_constraintTop_toBottomOf="@+id/edtNumBodyMass" />
 
         <EditText
-            android:id="@+id/edtNumMass"
+            android:id="@+id/edtNumBodyMass"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"

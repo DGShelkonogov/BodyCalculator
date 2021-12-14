@@ -10,46 +10,58 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.bodycalculator.Adapters.ResultAdapter;
+import com.example.bodycalculator.Adapters.SimpleAdapter;
 import com.example.bodycalculator.R;
-import com.example.bodycalculator.databinding.FragmentResultBinding;
-import com.example.bodycalculator.databinding.FragmentSelectIndexBinding;
-import com.example.bodycalculator.ui.select_index.SelectIndexViewModel;
+import com.example.bodycalculator.database.DBHelper;
+import com.example.bodycalculator.database.JSONHelper;
+import com.example.bodycalculator.database.SQLlite;
+import com.example.bodycalculator.models.TestResult;
+
+import java.util.ArrayList;
 
 
 public class ResultFragment extends Fragment {
 
-    private FragmentResultBinding binding;
+
     private ResultViewModel resultViewModel;
 
+    ResultAdapter adapter;
+    DBHelper dbHelper;
+    ListView listViewResults;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        View v = inflater.inflate(R.layout.fragment_result, container, false);
 
-        resultViewModel =
-                new ViewModelProvider(this).get(ResultViewModel.class);
+        dbHelper = new DBHelper(getActivity());
 
-        binding = FragmentResultBinding.inflate(inflater, container, false);
-        View root = binding.getRoot();
 
-        final TextView textView = binding.txtRes;
-        resultViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-            @Override
-            public void onChanged(@Nullable String s) {
-                textView.setText(s);
-            }
+
+        ArrayList<String> JSONResults = SQLlite.get_all_value(DBHelper.TABLE_RESULTS, DBHelper.KEY_RESULT_JSON , dbHelper);
+        ArrayList<TestResult> list = new ArrayList<>();
+        for(String JSONResult : JSONResults){
+            list.add(JSONHelper.importTestResultFromJSON(JSONResult));
+        }
+
+        listViewResults = v.findViewById(R.id.listViewResults);
+        adapter = new ResultAdapter(v.getContext(), list);
+        listViewResults.setAdapter(adapter);
+
+        Button btnClearAll = v.findViewById(R.id.btnClearAll);
+        btnClearAll.setOnClickListener(v1 -> {
+            DBHelper dbHelper = new DBHelper(getActivity());
+            SQLlite.delete_all(DBHelper.TABLE_RESULTS, dbHelper);
+            adapter.notifyDataSetChanged();
         });
 
-
-        return inflater.inflate(R.layout.fragment_result, container, false);
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        binding = null;
+        return v;
     }
 }

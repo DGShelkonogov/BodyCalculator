@@ -9,8 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.bodycalculator.R;
+import com.example.bodycalculator.TabbedActivity;
+import com.example.bodycalculator.database.DBHelper;
+import com.example.bodycalculator.database.JSONHelper;
+import com.example.bodycalculator.database.SQLlite;
+import com.example.bodycalculator.models.TestResult;
 
 
 public class Fragment_skibinski_coefficient extends Fragment {
@@ -22,6 +28,8 @@ public class Fragment_skibinski_coefficient extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_skibinski_coefficient, container, false);
 
+        TabbedActivity activity = (TabbedActivity) getActivity();
+
         TextView txt_skibinski_res = v.findViewById(R.id.txt_skibinski_res);
         EditText edtNumPS = v.findViewById(R.id.edtNumPS);
         EditText edtNumJEL = v.findViewById(R.id.edtNumJEL);
@@ -29,32 +37,52 @@ public class Fragment_skibinski_coefficient extends Fragment {
         TextView btn_skibinski_define = v.findViewById(R.id.btn_skibinski_define);
 
         btn_skibinski_define.setOnClickListener(v1 -> {
-            double PS = Double.parseDouble(edtNumPS.getText().toString());
-            double JEL = Double.parseDouble(edtNumJEL.getText().toString());
-            double CSS = Double.parseDouble(edtNumCSS.getText().toString());
-            double kv = ((JEL / 100) * PS) / CSS;
+            try{
+                double PS = Double.parseDouble(edtNumPS.getText().toString());
+                double JEL = Double.parseDouble(edtNumJEL.getText().toString());
+                double CSS = Double.parseDouble(edtNumCSS.getText().toString());
 
-            String result = String.format("%.2f",kv);
+                if(PS > 0 && JEL > 0 && CSS > 0){
+                    double kv = ((JEL / 100) * PS) / CSS;
 
-            if(kv < 5){
-                result += ": очень плохо (низкий уровень выносливость сердечно-сосудистой и дыхательной систем)";
-            }
-            if(kv >= 5 && kv < 10){
-                result += ": неудовлетворительно";
-            }
+                    activity.user.setPS(PS);
+                    activity.user.setJEL(JEL);
+                    activity.user.setCSS(CSS);
 
-            if(kv >= 10 && kv < 30){
-                result += ": удовлетворительно";
-            }
 
-            if(kv >= 30 && kv < 60){
-                result += ": хорошо";
-            }
+                    String result = String.format("%.2f",kv);
 
-            if(kv > 60){
-                result += ": очень хорошо (высокий уровень выносливости). ";
+                    if(kv < 5){
+                        result += ": очень плохо (низкий уровень выносливость сердечно-сосудистой и дыхательной систем)";
+                    }
+                    if(kv >= 5 && kv < 10){
+                        result += ": неудовлетворительно";
+                    }
+
+                    if(kv >= 10 && kv < 30){
+                        result += ": удовлетворительно";
+                    }
+
+                    if(kv >= 30 && kv < 60){
+                        result += ": хорошо";
+                    }
+
+                    if(kv > 60){
+                        result += ": очень хорошо (высокий уровень выносливости). ";
+                    }
+                    txt_skibinski_res.setText(result);
+
+                    DBHelper dbHelper = new DBHelper(getActivity());
+                    TestResult testResult = new TestResult(getResources().getString(R.string.skibinski), result);
+                    SQLlite.add(JSONHelper.exportTestResultToJSON(testResult),
+                            DBHelper.TABLE_RESULTS, DBHelper.KEY_RESULT_JSON , dbHelper);
+
+                }else{
+                    Toast.makeText(getActivity(), "Поля не могут быть отрицательные", Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+                Toast.makeText(getActivity(), "Поля заполнены неккоректно", Toast.LENGTH_SHORT).show();
             }
-            txt_skibinski_res.setText(result);
         });
 
         return v;

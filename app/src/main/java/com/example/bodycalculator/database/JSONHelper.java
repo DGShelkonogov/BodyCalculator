@@ -1,53 +1,26 @@
 package com.example.bodycalculator.database;
 
-import com.example.bodycalculator.models.User;
+import com.example.bodycalculator.models.TestResult;
 import com.google.gson.Gson;
-
-import java.util.List;
 
 public class JSONHelper {
     private static final String FILE_NAME = "data.json";
-
-
-    public static String exportUserToJSON(User user) {
-
-        Gson gson = new Gson();
-        DataItems dataItems = new DataItems();
-        dataItems.setUser(user);
-        String jsonString = gson.toJson(dataItems);
-        return jsonString;
-    }
-
-    public static String exportUsersToJSON(List<User> Users) {
+    
+    public static String exportTestResultToJSON(TestResult testResult) {
 
         Gson gson = new Gson();
         DataItems dataItems = new DataItems();
-        dataItems.setUsers(Users);
+        dataItems.setTestResult(testResult);
         String jsonString = gson.toJson(dataItems);
         return jsonString;
     }
-
-    public static User importUserFromJSON(String jsonString) {
+    
+    public static TestResult importTestResultFromJSON(String jsonString) {
 
         try{
             Gson gson = new Gson();
             DataItems dataItems = gson.fromJson(jsonString, DataItems.class);
-            return dataItems.getUser();
-        }
-        catch (Exception ex){
-            ex.printStackTrace();
-        }
-
-        return null;
-    }
-
-
-    public static List<User> importUsersFromJSON(String jsonString) {
-
-        try{
-            Gson gson = new Gson();
-            DataItems dataItems = gson.fromJson(jsonString, DataItems.class);
-            return dataItems.getUsers();
+            return dataItems.getTestResult();
         }
         catch (Exception ex){
             ex.printStackTrace();
@@ -57,21 +30,14 @@ public class JSONHelper {
     }
 
     private static class DataItems {
-        private User user;
-        private List<User> Users;
 
-        User getUser() {
-            return user;
-        }
-        void setUser(User user) {
-            this.user = user;
-        }
+        private TestResult testResult;
 
-        List<User> getUsers() {
-            return Users;
+        TestResult getTestResult() {
+            return testResult;
         }
-        void setUsers(List<User> Users) {
-            this.Users = Users;
+        void setTestResult(TestResult testResult) {
+            this.testResult = testResult;
         }
     }
 }

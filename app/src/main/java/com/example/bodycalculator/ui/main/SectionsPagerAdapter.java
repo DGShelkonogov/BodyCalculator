@@ -24,10 +24,7 @@ import com.example.bodycalculator.ui.tabbedFragments.Fragment_life_index;
 import com.example.bodycalculator.ui.tabbedFragments.Fragment_regulation_heart;
 import com.example.bodycalculator.ui.tabbedFragments.Fragment_skibinski_coefficient;
 
-/**
- * A [FragmentPagerAdapter] that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
+
 public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
 
@@ -56,20 +53,38 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public void setPrimaryItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-       TabbedActivity activity = (TabbedActivity) fragments[position].getActivity();
+    /*   TabbedActivity activity = (TabbedActivity) fragments[position].getActivity();
+        try{
+            User user = activity.user;
+            if(user.getBodyMass() != 0.0){
+                EditText edt = fragments[position].getView().findViewById(R.id.edtNumBodyMass);
+                edt.setText(String.valueOf(user.getBodyMass()));
+            }
+            if(user.getHeight() != 0.0){
+                EditText edt = fragments[position].getView().findViewById(R.id.edtNumHeight);
+                edt.setText(String.valueOf(user.getHeight()));
+            }
+            if(user.getCSS() != 0.0){
+                EditText edt = fragments[position].getView().findViewById(R.id.edtNumCSS);
+                edt.setText(String.valueOf(user.getCSS()));
+            }
+            if(user.getDAD() != 0.0){
+                EditText edt = fragments[position].getView().findViewById(R.id.edtNumDAD);
+                edt.setText(String.valueOf(user.getDAD()));
+            }
+            if(user.getSAD() != 0.0){
+                EditText edt = fragments[position].getView().findViewById(R.id.edtNumSAD);;
+                edt.setText(String.valueOf(user.getSAD()));
+            }
+            if(user.getJEL() != 0.0){
+                EditText edt = fragments[position].getView().findViewById(R.id.edtNumJEL);
+                edt.setText(String.valueOf(user.getJEL()));
+            }
 
-       try{
-           User user = activity.user;
-           if(user.getBodyMass() != 0.0){
-               EditText edt = fragments[position].getView().findViewById(R.id.edtNumBodyMass);
-               edt.setText(String.valueOf(user.getBodyMass()));
-           }
 
-       }catch (NullPointerException ex){
+        }catch (NullPointerException ex){
 
-       }
-
-
+        }*/
 
     }
 
